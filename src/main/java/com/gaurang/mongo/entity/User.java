@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "users")
+@Builder
+@ToString
 @Data
 public class User {
 

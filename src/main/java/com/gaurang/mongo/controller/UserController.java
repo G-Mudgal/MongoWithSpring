@@ -5,6 +5,7 @@ import com.gaurang.mongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +22,15 @@ public class UserController {
     @GetMapping("/findByEmail/{email}")
     public User findUserByEmail(@PathVariable String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @PostMapping("/")
+    public List<User> addUser() {
+        List<User> userList = new ArrayList<>();
+        userList.add(User.builder().name("John Doe").email("johndoe@example.com").age(30).build());
+        userList.add(User.builder().name("Jane Smith").email("janesmith@example.com").age(25).build());
+        userList.add(User.builder().name("Bob Johnson").email("bobjohnson@example.com").age(40).build());
+        return userRepository.saveAll(userList);
     }
 
     @PutMapping("/updateAgeByEmail/{email}")
